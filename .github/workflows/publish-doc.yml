@@ -1,0 +1,35 @@
+name: Publish doc
+on:
+  schedule:
+    - cron: 0 0 * * MON
+  workflow_dispatch:
+
+jobs:
+  publish doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - name: Publish surge doc
+        run: |
+          pnpm docs:build
+          echo "machine surge.surge.sh" >> ~/.netrc
+          echo "    login li-pan2@163.com" >> ~/.netrc
+          echo "    password ${{secrets.SURGE_TOKEN}}" >> ~/.netrc
+          pnpm pub:doc
+
