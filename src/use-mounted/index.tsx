@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
-
 function useMounted(callback: () => void) {
-    useEffect(callback, []);
+  useEffect(callback, []);
 }
 
 export default useMounted;

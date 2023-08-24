@@ -9,12 +9,12 @@ export default () => {
   const getCountWithOutNextTickHookRef = useRef<HTMLElement>(null);
 
   const withOutNextTick = useCallback(async () => {
-    const dom = getCountWithOutNextTickHookRef.current
+    const dom = getCountWithOutNextTickHookRef.current;
     if (dom) dom.innerText = String(count);
-  }, [count])
+  }, [count]);
 
   const withNextTick = useNextTick(() => {
-    const dom = getCountInNextTickHookRef.current
+    const dom = getCountInNextTickHookRef.current;
     if (dom) dom.innerText = String(count);
   });
 
@@ -30,15 +30,21 @@ export default () => {
         <tbody>
           <tr>
             <td>react state count:</td>
-            <td><span ref={countRef}>{count}</span></td>
+            <td>
+              <span ref={countRef}>{count}</span>
+            </td>
           </tr>
           <tr>
             <td>get count state in nextTick hook:</td>
-            <td><span ref={getCountInNextTickHookRef}>0</span></td>
+            <td>
+              <span ref={getCountInNextTickHookRef}>0</span>
+            </td>
           </tr>
           <tr>
             <td>get count state with out nextTick hook:</td>
-            <td><span ref={getCountWithOutNextTickHookRef}>0</span></td>
+            <td>
+              <span ref={getCountWithOutNextTickHookRef}>0</span>
+            </td>
           </tr>
         </tbody>
       </table>

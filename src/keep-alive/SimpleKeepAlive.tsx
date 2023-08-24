@@ -12,18 +12,14 @@ const KeepAlive = (props: KeepAliveProps) => {
 
   const currentChild = useRef<ReactElement>();
 
-  const [cachedElementMap] = useState<Map<React.Key, HTMLDivElement>>(
-    new Map(),
-  );
+  const [cachedElementMap] = useState<Map<React.Key, HTMLDivElement>>(new Map());
 
   const nextTick = useNextTick();
   useWatch(async () => {
     const children = props.children;
     if (!children) return;
 
-    currentChild.current = cachedChildrenRef.current.find(
-      (item) => item.key === children.key,
-    );
+    currentChild.current = cachedChildrenRef.current.find((item) => item.key === children.key);
     if (!currentChild.current) {
       cachedChildrenRef.current.push(children);
       currentChild.current = children;

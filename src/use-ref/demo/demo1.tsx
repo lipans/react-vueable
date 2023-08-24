@@ -6,7 +6,7 @@ export default () => {
 
   const hanldeClick = () => {
     ref.value.a = ref.value.a + 1;
-  }
+  };
 
   return (
     <div>

@@ -46,16 +46,12 @@ export default () => {
   const viewdatas = useMemo(() => {
     return data.students.map((student) => ({
       ...student,
-      className: data.classes.find(($class) => $class.id === student.classId)
-        ?.className,
+      className: data.classes.find(($class) => $class.id === student.classId)?.className,
     }));
   }, [data.classes, data.students]);
 
   const fetchAll = async () => {
-    const [classes, students] = await Promise.all([
-      apiClassList(),
-      apiStudentList(),
-    ]);
+    const [classes, students] = await Promise.all([apiClassList(), apiStudentList()]);
     data.classes = classes;
     data.students = students;
   };

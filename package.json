@@ -32,16 +32,19 @@
       "prettier --write --no-error-on-unmatched-pattern"
     ],
     "*.{css,less}": [
-      "stylelint --fix",
-      "prettier --write"
+      "stylelint '{src,test}/**/*.{css,less}' --fix",
+      "prettier --write",
+      "git add"
     ],
     "*.{js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint '{src,test}/**/*.{js,jsx,ts,tsx}' --fix",
+      "prettier --write",
+      "git add"
     ],
     "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --parser=typescript --write"
+      "eslint '{src,test}/**/*.{js,jsx,ts,tsx}' --fix",
+      "prettier --parser=typescript --write",
+      "git add"
     ]
   },
   "dependencies": {},
@@ -55,6 +58,8 @@
     "dumi": "^2.2.4",
     "dumi-theme-antd-style": "^0.29.3",
     "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "execa": "^4.0.2",
     "father": "^4.3.0",
     "husky": "^8.0.3",

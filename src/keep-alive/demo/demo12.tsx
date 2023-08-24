@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  AliveScope,
-  KeepAlive,
-  useActivated,
-  useDeactivated,
-} from 'react-vueable';
+import { AliveScope, KeepAlive, useActivated, useDeactivated } from 'react-vueable';
 
 const Test = () => {
   useActivated(() => {

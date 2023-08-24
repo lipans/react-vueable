@@ -20,15 +20,21 @@ export default () => {
         <tbody>
           <tr>
             <td>react state count:</td>
-            <td><span id="count">{count}</span></td>
+            <td>
+              <span id="count">{count}</span>
+            </td>
           </tr>
           <tr>
             <td>count before render:</td>
-            <td><span id="count_before_render">0</span></td>
+            <td>
+              <span id="count_before_render">0</span>
+            </td>
           </tr>
           <tr>
             <td>count after render:</td>
-            <td><span id="count_after_render">0</span></td>
+            <td>
+              <span id="count_after_render">0</span>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,13 +1,8 @@
 import { useRef } from 'react';
 
-type WatchCallback<T> = T extends [unknown]
-  ? (value: T[0], oldValue: T[0]) => void
-  : (value: T, oldValue: T) => void;
+type WatchCallback<T> = T extends [unknown] ? (value: T[0], oldValue: T[0]) => void : (value: T, oldValue: T) => void;
 
-function useWatch<T extends [unknown, ...unknown[]]>(
-  callback: WatchCallback<T>,
-  deps: T,
-) {
+function useWatch<T extends [unknown, ...unknown[]]>(callback: WatchCallback<T>, deps: T) {
   const refDeps = useRef<T>();
 
   const judgeChange = () => {
@@ -23,8 +18,7 @@ function useWatch<T extends [unknown, ...unknown[]]>(
     const newValue: any = deps.length > 1 ? deps : deps[0];
 
     if (refDeps.current) {
-      const oldValue: any =
-        refDeps.current.length > 1 ? refDeps.current : refDeps.current[0];
+      const oldValue: any = refDeps.current.length > 1 ? refDeps.current : refDeps.current[0];
       callback(newValue, oldValue);
     }
 

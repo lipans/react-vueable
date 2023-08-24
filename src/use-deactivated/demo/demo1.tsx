@@ -13,28 +13,15 @@ const ComponentB = () => {
 
 export default () => {
   const [index, setIndex] = useState(0);
-  const Component = useMemo(
-    () => ({ 0: ComponentA, 1: ComponentB })[index]!,
-    [index],
-  );
+  const Component = useMemo(() => ({ 0: ComponentA, 1: ComponentB })[index]!, [index]);
 
   return (
     <div>
       <label>
-        <input
-          type="radio"
-          checked={index === 0}
-          onChange={() => setIndex(0)}
-        />
-        A
+        <input type="radio" checked={index === 0} onChange={() => setIndex(0)} />A
       </label>
       <label>
-        <input
-          type="radio"
-          checked={index === 1}
-          onChange={() => setIndex(1)}
-        />
-        B
+        <input type="radio" checked={index === 1} onChange={() => setIndex(1)} />B
       </label>
       <KeepAlive>
         <Component key={index} />

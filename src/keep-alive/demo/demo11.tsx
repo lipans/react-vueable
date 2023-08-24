@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-export const ShadowView: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const ShadowView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const attachShadow = (host: HTMLDivElement) => {
     if (!host || host.shadowRoot) return;
 
@@ -15,9 +13,7 @@ export const ShadowView: React.FC<{ children: React.ReactNode }> = ({
   return <div ref={attachShadow}>{children}</div>;
 };
 
-export const ShadowView2: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const ShadowView2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const attachShadow = (host: HTMLDivElement) => {
     if (!host || host.shadowRoot) return;
 

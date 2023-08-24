@@ -6,7 +6,7 @@ export default () => {
 
   const hanldeClick = () => {
     state.a = state.a + 1;
-  }
+  };
 
   return (
     <div>
