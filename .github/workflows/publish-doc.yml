@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish doc:
+  publish-doc:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

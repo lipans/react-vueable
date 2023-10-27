@@ -1,10 +1,10 @@
 ---
-nav: Home
+nav: 首页
 hero:
   title: react-vueable
-  description: Vue3 emulation API called in the react function component
+  description: 在react函数组件中调用的Vue3高仿API
   actions:
-    - text: Guide
+    - text: 指南
       link: /guide
     - text: GitHub
       link: https://github.com/lipans/react-vueable
