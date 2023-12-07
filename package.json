@@ -1,6 +1,6 @@
 {
   "name": "react-vueable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Vue3 emulation API called in the react function component",
   "homepage": "https://react-vueable.surge.sh",
   "repository": "https://github.com/lipans/react-vueable.git",
