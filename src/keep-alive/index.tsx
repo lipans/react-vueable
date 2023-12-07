@@ -115,11 +115,13 @@ const KeepAlive: React.FC<{ children: ReactElement }> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activatedChanged]);
 
-  return (
+  return !!children.key ? (
     <>
       <div ref={ref} />
       {!globalCachedMap && <CacheRenderer cachedMap={cachedMap} />}
     </>
+  ) : (
+    children
   );
 };
 
