@@ -49,3 +49,9 @@ Please click on count+1 and change the window size again to see the difference:
 <code src="./demo/demo3.tsx" ></code>
 
 Using `useNextTick` instead of adding a count state dependency in the second parameter of `useEffect` is a new approach. Excessive state dependencies in a responsive useEffect can form a state dependency chain, and we must be very clear about the relationship between state dependencies. However, `useNextTick` does not bring such a mental burden.
+
+## Multiple Calls in One Tick
+
+Just like Vue, you can call `nextTick` multiple times within the same render batch. All the ticks are flushed together after the next DOM update, and every returned Promise resolves with its own result.
+
+<code src="./demo/demo4.tsx" ></code>

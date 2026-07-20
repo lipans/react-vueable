@@ -49,3 +49,9 @@ const withNextTick = useNextTick(() => {
 <code src="./demo/demo3.tsx" ></code>
 
 使用`useNextTick`而不是在`useEffect`第二个参数里面添加count状态的依赖，这是一种新的思路。响应式的useEffect里面过多的状态依赖会形成一个状态依赖链，我们必须非常清楚状态的依赖的关系，然而`useNextTick`不会带来这种心智负担。
+
+### 一次 Tick 中多次调用
+
+和 Vue 一样，你可以在同一个渲染批次中多次调用 `nextTick`。所有的 tick 会在下一次 DOM 更新后一起执行，并且每个返回的 Promise 都会以各自的结果被 resolve。
+
+<code src="./demo/demo4.tsx" ></code>

@@ -1,29 +1,25 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-type WatchCallback<T> = T extends [unknown] ? (value: T[0], oldValue: T[0]) => void : (value: T, oldValue: T) => void;
+type WatchValue<T extends unknown[]> = T extends [unknown] ? T[0] : T;
+
+type WatchCallback<T extends unknown[]> = (value: WatchValue<T>, oldValue: WatchValue<T>) => void;
 
 function useWatch<T extends [unknown, ...unknown[]]>(callback: WatchCallback<T>, deps: T) {
   const refDeps = useRef<T>();
+  const refCallback = useRef(callback);
+  refCallback.current = callback;
 
-  const judgeChange = () => {
-    if (!refDeps.current) return true;
-    if (refDeps.current.length !== deps.length) return true;
-    for (let i = 0; i < deps.length; i++) {
-      if (refDeps.current[i] !== deps[i]) return true;
-    }
-    return false;
-  };
-
-  if (judgeChange()) {
-    const newValue: any = deps.length > 1 ? deps : deps[0];
-
-    if (refDeps.current) {
-      const oldValue: any = refDeps.current.length > 1 ? refDeps.current : refDeps.current[0];
-      callback(newValue, oldValue);
-    }
-
+  useEffect(() => {
+    const prevDeps = refDeps.current;
     refDeps.current = deps;
-  }
+
+    if (!prevDeps) return;
+
+    const newValue = (deps.length > 1 ? deps : deps[0]) as WatchValue<T>;
+    const oldValue = (prevDeps.length > 1 ? prevDeps : prevDeps[0]) as WatchValue<T>;
+    refCallback.current(newValue, oldValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 }
 
 export default useWatch;

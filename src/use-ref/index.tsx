@@ -1,5 +1,7 @@
 import { useRef as useReactRef, useState } from 'react';
 
+import createReactive from '../shared/reactive';
+
 function useRef<T extends object>(initialValue: T) {
   const isFirstRef = useReactRef(true);
 
@@ -8,15 +10,7 @@ function useRef<T extends object>(initialValue: T) {
   const reactRef = useReactRef<T>(initialValue);
 
   if (isFirstRef.current) {
-    reactRef.current = new Proxy<T>(reactRef.current, {
-      get(target, key) {
-        return Reflect.get(target, key);
-      },
-      set(target, key, value) {
-        triggerRender((prev) => !prev);
-        return Reflect.set(target, key, value);
-      },
-    });
+    reactRef.current = createReactive(reactRef.current, () => triggerRender((prev) => !prev));
 
     isFirstRef.current = false;
   }
